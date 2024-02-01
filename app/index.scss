@@ -12,6 +12,11 @@ body::-webkit-scrollbar{
 }
 
 #left_war{
-    filter: drop-shadow(0 4px 8px rgba(95, 52, 52, 0.905)); /* Adjust the values based on your preference */
+    filter: drop-shadow(0 4px 8px rgba(95, 52, 52, 0.905));
+    transition: filter 0.3s ease-in-out;
+}
+
+#characters_img{
+    filter: drop-shadow(0 4px 28px rgba(255, 255, 255, 0.185));
     transition: filter 0.3s ease-in-out;
 }

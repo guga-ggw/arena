@@ -29,6 +29,19 @@ import token_3 from './assets/token3.png'
 import token_4 from './assets/token4.png'
 import token_5 from './assets/token5.png'
 import token_6 from './assets/token6.png'
+import whitepaper from './assets/whitepaper.png'
+import masterdeck from './assets/masterdeck.png'
+import down_arrow from './assets/down_arrow.png'
+import video_template from './assets/video.png'
+import res_video from './assets/videso.png'
+import design_concept from './assets/design_concept.png'
+import pht_tem from './assets/pht_tem1.png'
+import pht_lefr from './assets/pht_left.png'
+import pht_right from './assets/pht_right.png'
+import left_arr from './assets/arrow_left.png'
+import right_arr from './assets/arrow_right.png'
+import res_pht from './assets/res_pht.png'
+
 
 import './index.scss';
 import useWindowResize from './hooks/useWindowResize';
@@ -70,7 +83,7 @@ export default function Home() {
   const {height, width} = useWindowResize()
 
   return (
-    <main className="w-full h-fit"> 
+    <main className="w-full h-fit bg-[#04131B]"> 
     <div className='w-full h-fit'>
       {navtoggle && (
         <div className='absolute left-0 top-0 w-full h-[755px] pt-20 bg-[#0C1821] z-40 justify-center items-center flex'>      
@@ -88,7 +101,7 @@ export default function Home() {
         </div>
       )}
 
-      <nav className='w-full h-14  flex px-4 justify-between items-center lg:h-24 lg:px-11 xl:px-20'>
+      <nav className='w-full h-14 bg-white flex px-4 justify-between items-center lg:h-24 lg:px-11 xl:px-20'>
           <img onClick={() => settoggle(true)} className='w-10 h-10 lg:hidden' src={BarImage.src} alt="" />
           <img className='w-12 h-12 xl:h-[70px] xl:w-[70px]' src={LogoImage.src} alt="" />
           <ul className='lg:flex gap-[2.5vw] xl:gap-9 hidden'>
@@ -159,12 +172,40 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className='h-fit bg-[#04131B] pt-9 w-full flex justify-center items-center pb-7'>
-      <div className="w-[92%] h-[526px] bg-gradient-to-br from-[#c4525fd6] to-[#04131B]  rounded-[10px] relative p-[1.5px]">
+      <div className='h-fit bg-[#04131B] pt-9 w-full flex justify-center items-center pb-7 mt-[-1px]'>
+      <div className="w-[92%] h-[526px] bg-gradient-to-br from-[#c4525fd6] to-[#04131B] rounded-[10px] relative p-[1.5px] mt-16 lg:h-[273px] lg:w-[80%] ">
         <h1 className='absolute left-1/2 translate-x-[-50%] font-extrabold text-[16px] leading-6 text-white w-48 bg-[#04131B] top-[-10px] text-center'>AMT TOKEN UTILITY</h1>
-        <div className="w-full h-full bg-[#04131B] rounded-[10px]"></div>
-
+        <div className="w-full h-full bg-[#04131B] rounded-[10px] px-8 flex justify-center lg:pl-20 items-start flex-wrap lg:justify-around lg:items-center ">
+            {token_list.map((token) => (
+                  <div className='flex items-center justify-start w-full lg:w-[30%] lg:justify-start h-16 pt-9 '>
+                    <img src={token.img.src} alt="" />
+                    <h2 className='text-white font-regular text-[14px] text-opacity-90'>{token.text}</h2>
+                  </div>
+            ))}
         </div>
+        </div>
+      </div>
+      <div className='h-fit w-full bg-[#04131B]'>
+        <div className="mt-[-1px] w-full h-fit lg:gap-28 lg:py-32 flex flex-wrap justify-center items-center py-6 gap-10">
+          <img src={whitepaper.src} alt="" />
+          <img src={masterdeck.src} alt="" />
+        </div>
+        <div className="w-full h-fit py-2 justify-center flex flex-col items-center">
+          <h1 className='font-bold text-[20px] leading-5 text-white mt-9'>CHECK OUT OUR NEW VIDEO</h1>
+          <img className='mt-4' src={down_arrow.src} alt="" />
+          {Number(width) > 650 ? <img id='characters_img' className='w-[80%] mt-7 lg:w-[840px] h-[400px]' src={res_video.src} alt="" /> : <img className='mt-0 w-[100%] h-[386px]' src={video_template.src} alt="" />}
+        </div>
+      </div>
+      <div className="mt-[-1px] w-full h-fit pb-28 flex flex-col items-center bg-[#04131B]">
+        <img className='w-56 h-20 lg:mt-52 md:mt-24' src={design_concept.src} alt="" />
+        <div className='mt-10 flex w-full items-center justify-center relative gap-3 lg:mt-16'>
+          <img className='absolute left-0 top-[-80px] md:w-12 md:hidden' src={pht_lefr.src} alt="" />
+          <img className='h-80 cursor-pointer lg:h-96 hidden md:block' src={left_arr.src} alt="" />
+          {Number(width) > 980 ?  <img className='w-[800px] h-96' src={res_pht.src} alt="" />: <img className='h-48 w-80 sm:h-60 sm:w-96  md:w-[550px] md:h-80' src={pht_tem.src} alt="" />}
+          <img className='h-80 cursor-pointer lg:h-96 hidden md:block' src={right_arr.src} alt="" />
+          <img className='absolute right-0 top-[-80px] md:w-44 md:hidden' src={pht_right.src} alt="" />
+        </div>
+        
       </div>
     </main>
   );

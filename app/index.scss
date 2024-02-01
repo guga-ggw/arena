@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kumbh+Sans:wght@600;700;800&family=Nunito:ital,wght@1,700;1,1000&family=Roboto:wght@700&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -6,15 +7,11 @@
     font-family: 'Nunito', sans-serif;
 }
 
-#header_txt{
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    line-height: 52px;
-    letter-spacing: 1.5px;
+body::-webkit-scrollbar{
+    display: none;
 }
 
-p{
-    color: #ffffff80;
-    font-size: 15px;
-    font-weight: 200;
+#left_war{
+    filter: drop-shadow(0 4px 8px rgba(95, 52, 52, 0.905)); /* Adjust the values based on your preference */
+    transition: filter 0.3s ease-in-out;
 }

@@ -534,6 +534,7 @@ export default function Home() {
               <img className='' src={foot_m.src} alt="" />
             </div>
           </div>
+          
           {Number(width) > 980 ?  <h2 className='text-white text-[14px] font-black mt-14 ml-[5%]'>© 2022 Arena. All rights reserved.</h2> : <></>}
           <div className="w-full lg:w-fit flex flex-col gap-6 items-center mt-14 lg:mt-0 lg:gap-3 lg:items-start">
               <h2 className='text-white text-[18px]'>Subscire to our Newsletter</h2>

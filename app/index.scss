@@ -20,3 +20,15 @@ body::-webkit-scrollbar{
     filter: drop-shadow(0 4px 28px rgba(255, 255, 255, 0.185));
     transition: filter 0.3s ease-in-out;
 }
+
+#partners{
+    div{
+        img{
+            filter: drop-shadow(2px 5px 28px #01699E);
+        }
+    }
+}
+
+#reg_form{
+    box-shadow: 2px 5px 40px .2px rgba(0, 0, 0, 0.633);
+}

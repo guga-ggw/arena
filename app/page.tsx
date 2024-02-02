@@ -41,7 +41,27 @@ import pht_right from './assets/pht_right.png'
 import left_arr from './assets/arrow_left.png'
 import right_arr from './assets/arrow_right.png'
 import res_pht from './assets/res_pht.png'
-
+import des_ls_img from './assets/concept_ls_img.png'
+import des_m_img from './assets/concept_mm_img.png'
+import des_r_img from './assets/concept_rm_img.png'
+import roadmap from './assets/roadmap.png'
+import complete_mark from './assets/complete_mark.png'
+import uncomplete from './assets/uncomplete_mark.png'
+import bear from './assets/bear_res.png'
+import fox from './assets/fox_res.png'
+import wolf from './assets/wolf_res.png'
+import scorpio from './assets/scorpio_res.png'
+import bear_res from './assets/bear.png'
+import fox_res from './assets/fox.png'
+import wolf_res from './assets/wolf.png'
+import scorpio_res from './assets/scorpio.png'
+import stick from './assets/stick.png'
+import tokenomics from './assets/tokenomics.png'
+import list from './assets/list.png'
+import circle from './assets/crc.png'
+import circle_res from './assets/crc_ress.png'
+import list_res from './assets/list_res.png'
+import team from './assets/team.png'
 
 import './index.scss';
 import useWindowResize from './hooks/useWindowResize';
@@ -77,6 +97,15 @@ export default function Home() {
       img : token_6
     },
   ]
+
+  const RoadmapData = [
+    ['Lite Paper', 'White paper', 'Smart Contract', 'Contract Audit', 'New HUD', 'Seed Round'],
+    ['Public Sale', 'Obtain Coingecko Listing', 'Obtain Coinmarketcap Listing', 'Centralized exchange Listing', 'Game Launch On GameXChange', 'Game Currency Integration'],
+    ['NFT Marketplace and NFT Rewards', 'NFT Pair Staking/Forming', 'NFT Asset Games Integration', 'Single Asset Staking', 'Additional NFT Assets', 'Additional Characters'],
+    ['Game rewards for game asset & NFT', 'New NFT Collectibles','Collaboration With Influencers','User-Generated Events','New Partnerships','VR gallery','Arena Mastser VR (Quest 2)']
+    
+  ]
+
   const [navtoggle, settoggle] = useState(false)
 
 
@@ -198,14 +227,165 @@ export default function Home() {
       </div>
       <div className="mt-[-1px] w-full h-fit pb-28 flex flex-col items-center bg-[#04131B]">
         <img className='w-56 h-20 lg:mt-52 md:mt-24' src={design_concept.src} alt="" />
-        <div className='mt-10 flex w-full items-center justify-center relative gap-3 lg:mt-16'>
+        <div className='mt-10 flex w-full items-center justify-center relative gap-3 lg:mt-16 flex-col'>
           <img className='absolute left-0 top-[-80px] md:w-12 md:hidden' src={pht_lefr.src} alt="" />
-          <img className='h-80 cursor-pointer lg:h-96 hidden md:block' src={left_arr.src} alt="" />
-          {Number(width) > 980 ?  <img className='w-[800px] h-96' src={res_pht.src} alt="" />: <img className='h-48 w-80 sm:h-60 sm:w-96  md:w-[550px] md:h-80' src={pht_tem.src} alt="" />}
-          <img className='h-80 cursor-pointer lg:h-96 hidden md:block' src={right_arr.src} alt="" />
+          <div className='flex w-full justify-center xl:gap-6 gap-3'>
+            <img className='h-80 cursor-pointer lg:h-96 hidden md:block xl:h-auto  ' src={left_arr.src} alt="" />
+            {Number(width) > 980 ?  <img className='w-[800px] h-96 xl:w-auto xl:h-auto' src={res_pht.src} alt="" />: <img className='h-48 w-80 sm:h-60 sm:w-96  md:w-[550px] md:h-80' src={pht_tem.src} alt="" />}
+            <img className='h-80 cursor-pointer lg:h-96 hidden md:block xl:h-auto' src={right_arr.src} alt="" />
+          </div>
+          {Number(width) > 1440 ?  
+          <div className='w-[1060px] h-[263px]  flex items-start justify-between  relative'>
+            <div className='relative'>
+            <img className='h-full cursor-pointer' src={des_ls_img.src} alt="Explore New Lands" />
+            <h1 className='leading-8 text-[24px] font-black w-2/3 text-white absolute top-3 left-3'>EXPLORE NEW LANDS</h1>
+            </div>
+            <div className='relative'>
+            <img className='h-full cursor-pointer ' src={des_m_img.src} alt="" />
+            <h1 className='leading-8 text-[24px] font-black w-2/3 text-white absolute top-3 left-3'>ExBattle on Diverse Arenas</h1>
+            </div>
+            <div className='relative'>
+
+            <img className='h-full cursor-pointer ' src={des_r_img.src} alt="" />
+            <h1 className='leading-8 text-[24px] font-black w-2/3 text-white absolute top-3 left-3'>Collect NFT Characters</h1>
+            </div>
+          </div>
+          : ""}
           <img className='absolute right-0 top-[-80px] md:w-44 md:hidden' src={pht_right.src} alt="" />
         </div>
         
+      </div>
+      <div className='w-full h-fit pb-10 flex items-center flex-col text-center'>
+            <img className='w-40 h-20' src={roadmap.src} alt="" />
+            
+            <p className='mt-10 text-white font-extralight leading-6 text-opacity-80 text-[14px] w-[90%] lg:w-[60%]'>
+            Arena Master is a tokenized online video game developed by Sambrela. 
+            Sambrela boasts great expertise in blockchain technology and mobile game development. 
+            Our sole aim is to provide a real-life gaming experience for people in the 
+            </p>
+            <div className='w-full h-fit flex flex-col gap-14 mt-10 relative'>
+              <div className='hidden xl:flex absolute w-[60px] h-[60px] left-1/2 translate-x-[-50%] top-64 z-30 bg-[#C45260] rounded-full  justify-center items-center'>
+                <h2 className='font-bold text-[30px] text-white'>1</h2>
+              </div>
+
+              <div className='hidden xl:flex absolute w-[60px] h-[60px] left-1/2 translate-x-[-50%] top-[800px] z-30 bg-[#C45260] rounded-full  justify-center items-center'>
+                <h2 className='font-bold text-[30px] text-white'>2</h2>
+              </div>
+
+              <div className='hidden xl:flex absolute w-[60px] h-[60px] left-1/2 translate-x-[-50%] top-[1350px] z-30 bg-black border-white border-[1px] rounded-full  justify-center items-center'>
+                <h2 className='font-bold text-[30px] text-white'>3</h2>
+              </div>
+
+              <div className='hidden xl:flex absolute w-[60px] h-[60px] left-1/2 translate-x-[-50%] top-[1850px] z-30 bg-black border-white border-[1px] rounded-full  justify-center items-center'>
+                <h2 className='font-bold text-[30px] text-white'>4</h2>
+              </div>
+
+              <img className='hidden xl:block absolute left-1/2 top-24 translate-x-[-50%]' src={stick.src} alt="" />
+             
+             
+              <div className='flex flex-col justify-center items-center relative'>
+                <div className='flex w-full justify-center gap-60'>
+                  <div className='w-full flex flex-col items-center'>
+                  <h1 className='text-white text-[46px] font-extrabold leading-[42px]'>Q4</h1>
+                    <p className='font-bold text-white leading-5 mt-4'>2021 year</p>
+                    <div className='w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-40 sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative' style={{ boxShadow: 'inset 0 0 10px #17559B' }}>
+                        {RoadmapData[0].map((item) => (
+                          <div className='flex items-center gap-3 '>
+                            <img src={complete_mark.src} alt="" />
+                            <h2 className='text-[14px] text-white text-opacity-85'>{item}</h2>
+                          </div>
+                          
+                          ))}
+                      </div>
+                    </div>
+                 <img className='hidden xl:block' src={bear_res.src} alt="" />
+               </div>
+               <img className='absolute top-[-50px] right-0 xl:hidden' src={bear.src} alt="" />
+              </div>
+              <div className='flex flex-col justify-center items-center relative'>
+              <div className='flex w-full justify-center gap-60'>
+              <img className='hidden xl:block' src={fox_res.src} alt="" />
+              <div className='w-full flex flex-col items-center'>
+              <h1 className='text-white text-[46px] font-extrabold leading-[42px]'>Q1-Q2</h1>
+                <p className='font-bold text-white leading-5 mt-4'>2022 year</p>
+                <div className='w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-40 sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative' style={{ boxShadow: 'inset 0 0 10px #17559B' }}>
+                    {RoadmapData[1].map((item) => (
+                      <div className='flex items-center gap-3 '>
+                        <img src={uncomplete.src} alt="" />
+                        <h2 className='text-[14px] text-white text-opacity-85'>{item}</h2>
+                      </div>
+                      
+                      ))}
+                      </div>
+                 </div>
+                 
+               </div>
+               <img className='absolute top-[-80px] left-0 xl:hidden' src={fox.src} alt="" />
+              </div>
+              <div className='flex flex-col justify-center items-center relative'>
+                
+                <div className='flex w-full justify-center gap-60'>
+                <div className='w-full flex flex-col items-center'>
+              <h1 className='text-white text-[46px] font-extrabold leading-[42px]'>Q3</h1>
+                <p className='font-bold text-white leading-5 mt-4'>2021 year</p>
+                <div className='w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-40 sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative' style={{ boxShadow: 'inset 0 0 10px #17559B' }}>
+                    {RoadmapData[2].map((item) => (
+                      <div className='flex items-center gap-3 '>
+                        <img src={uncomplete.src} alt="" />
+                        <h2 className='text-[14px] text-white text-opacity-85'>{item}</h2>
+                      </div>
+                      
+                      ))}
+                      </div>
+                 </div>
+                 <img className='hidden xl:block' src={wolf_res.src} alt="" />
+               </div>
+               <img className='absolute top-[-10px] right-0 xl:hidden' src={wolf.src} alt="" />
+              </div>
+              <div className='flex flex-col justify-center items-center relative'>
+              <div className='flex w-full justify-center gap-60'>
+              <img className='hidden xl:block' src={scorpio_res.src} alt="" />
+              <div className='w-full flex flex-col items-center'>
+              <h1 className='text-white text-[46px] font-extrabold leading-[42px]'>Q4</h1>
+                <p className='font-bold text-white leading-5 mt-4'>2021 year</p>
+                <div className='w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-40 sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative' style={{ boxShadow: 'inset 0 0 10px #17559B' }}>
+                    {RoadmapData[3].map((item) => (
+                      <div className='flex items-center gap-3 '>
+                        <img src={uncomplete.src} alt="" />
+                        <h2 className='text-[14px] text-white text-opacity-85'>{item}</h2>
+                      </div>
+                      
+                      ))}
+                      </div>
+                 </div>
+                 
+               </div>
+               <img className='absolute top-[-40px] left-0 xl:hidden' src={scorpio.src} alt="" />
+              </div>
+      </div>
+      </div>
+      <div className='w-full h-fit flex flex-col items-center pt-5 pb-36'>
+        <img className='w-44 h-20 mt-11 lg:w-64' src={tokenomics.src} alt="" />
+        <p className='w-[95%] text-[14px] text-center text-white text-opacity-75 mt-9 lg:w-[60%]'>
+          Arena Master is a tokenized online video game developed by Sambrela. 
+          Sambrela boasts great expertise in blockchain technology and mobile game development.
+           Our sole aim is to provide a real-life gaming experience for people in the 
+        </p>
+        <div className="w-full h-fit py-8 mt-14 flex flex-col items-center gap-14 bg-gradient-to-b from-[#042B3E] to-[#04131B] rounded-3xl lg:w-[85%] lg:flex-row lg: justify-around">
+        {Number(width) > 1440 ?  
+        <>
+        <img src={list_res.src} alt="" />
+        <img src={circle_res.src} alt="" />
+        </> :
+         <>
+         <img src={list.src} alt="" />
+          <img className='w-full sm:w-[400px]' src={circle.src} alt="" />
+        </> }
+          
+        </div>
+      </div>
+      <div className='h-96 flex justify-center'>
+        <img className='w-44 h-20 mt-11 lg:w-64' src={team.src} alt="" />
       </div>
     </main>
   );

@@ -32,3 +32,7 @@ body::-webkit-scrollbar{
 #reg_form{
     box-shadow: 2px 5px 40px .2px rgba(0, 0, 0, 0.633);
 }
+
+#cl_pt{
+    clip-path: polygon(50% 12%, 50% 12%, 100% 30%, 100% 67%, 52% 80%, 52% 80%, 0 68%, 0 29%);
+}

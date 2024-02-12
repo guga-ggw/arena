@@ -1,4 +1,6 @@
 'use client'
+
+import Image from 'next/image';
 import BarImage from './assets/Bar.png';
 import LogoImage from './assets/arena_logo.png';
 import war_right from './assets/warrior-right.png';
@@ -89,13 +91,21 @@ import foot_m from './assets/foot_m.png'
 import ref_form from './assets/reg-form.png'
 import toggle from './assets/toggle.png'
 import advisors from './assets/advisors.png'
+import sun from './assets/up_sun.png'
+import moon from './assets/up_moon.png'
+import res_btn from './assets/res_btn.png'
+import dark_lnkd from './assets/drk_lnkd.png'
+import b_reddit from './assets/black_redit.png'
+import b_m from './assets/black_m.png'
+import b_telegram from './assets/black_telegram.png'
+import b_twitter from './assets/black_twitter.png'
 
 import './index.scss';
 import useWindowResize from './hooks/useWindowResize';
 import { useState } from 'react';
 
-
 export default function Home() {
+
   const advisorsData = [pfp_1, pfp_2, pfp_3, pfp_4]
   const pfpData = [pfp_1, pfp_2, pfp_3, pfp_4, pfp_5, pfp_6, pfp_7, pfp_8, pfp_9, pfp_10, pfp_11, pfp_12, pfp_13]
   const navlist = ['Home', 'About Us', 'Design concept', 'Roadmap', 'Tokenomics', 'Our team', 'Partners', 'Whitepaper', 'Arena Master Deck']
@@ -135,12 +145,14 @@ export default function Home() {
   ]
 
   const [navtoggle, settoggle] = useState(false)
-
+  const [ligthmode, setlightmode] = useState(false)
+  let text = ligthmode ? "[#05121B]" : "white"
+  let bg = ligthmode ? "bg-white" : "bg-[#04131B]"
 
   const {height, width} = useWindowResize()
 
   return (
-    <main className="w-full h-fit bg-[#04131B]"> 
+    <main className={`w-full h-fit ${bg}`}> 
     <div className='w-full h-fit'>
       {navtoggle && (
         <div className='absolute left-0 top-0 w-full h-[755px] pt-20 bg-[#0C1821] z-40 justify-center items-center flex'>      
@@ -150,7 +162,7 @@ export default function Home() {
           <img onClick={() => settoggle(false)} className='absolute top-7 right-7 cursor-pointer' src={close.src} alt="" />
           <ul className='flex flex-col gap-7 text-center z-40'>
           {navlist.map((li) => (
-            <li className={`font-bold text-[18px] cursor-pointer ${li == "Home" ? 'text-[#C45260]' : "text-white"} hover:text-[#C45260] transition-colors`}>{li}</li>
+            <li key={li} className={`font-bold text-[18px] cursor-pointer ${li == "Home" ? 'text-[#C45260]' : "text-white"} hover:text-[#C45260] transition-colors`}>{li}</li>
             ))}
           <img className='' src={nav_bottom_war.src} alt="" />
 
@@ -163,35 +175,38 @@ export default function Home() {
           <img className='w-12 h-12 xl:h-[70px] xl:w-[70px]' src={LogoImage.src} alt="" />
           <ul className='lg:flex gap-[2.5vw] xl:gap-9 hidden'>
           {navlist.map((li) => (
-            <li className={`font-semibold text-[13px] xl:text-[16px] cursor-pointer ${li == "Home" ? 'text-[#C45260]' : ""} hover:text-[#C45260] transition-colors`}>{li}</li>
+            <li key={li} className={`font-semibold text-[13px] xl:text-[16px] cursor-pointer ${li == "Home" ? 'text-[#C45260]' : ""} hover:text-[#C45260] transition-colors`}>{li}</li>
             ))}
           </ul>
-          <img className='cursor-pointer' src={toggle.src} alt="" />
+          <div className={`w-[50px] rounded-full h-6 bg-${ligthmode ? "[#C45260]" : "black"} relative flex items-center justify-between px-[2px] cursor-pointer`}  onClick={() => setlightmode(prev => !prev)}>
+            {ligthmode ? <img className='w-1/2 h-full absolute left-1' src={sun.src}  alt='sdw' /> : <img className='w-1/2 h-full absolute right-1' src={moon.src}  alt="sdwa"/> }
+            <div className={`h-5 w-5 rounded-full bg-white ${ligthmode ? "ml-7" : ""}`}></div>
+          </div>
       </nav>
-      <div className='min-h-[700px] pb-2 bg-[#04131B] w-full px-4 flex font-black pt-14 flex-col relative md:text-center md:items-center'>
+      <div className={`min-h-[700px] pb-2 bg-${ligthmode ? "white" : "[#04131B]"} w-full px-4 flex font-black pt-14 flex-col relative md:text-center md:items-center`}>
         <img className='absolute right-8 top-40 w-[90px] h-[90px] hidden lg:block' src={star.src} alt="" />
         <img className='absolute w-full h-full top-0 left-0 md:hidden' src={home_bg.src} alt="" />
         {Number(width) > 980 ? <img id='left_war' className='absolute right-0 top-0 sm:top-[-20px] z-10 lg:top-[35%] lg:w-[250px] lg:h-[450px] ' src={right_war_res.src}/> : <img className='absolute right-0 top-0 sm:top-[-20px] z-10 lg:top-[10%] lg:w-[500px] lg:h-[600px]' src={war_right.src}/>}
-        <h1 className='text-white h-fit text-[40px] w-[60%] leading-[50px] sm:w-[90%] sm:text-center md:w-[80%] lg:leading-[100px] lg:text-[60px] lg:w-[690px] '>ARENA AWAITS YOU, <h1 className='text-[#C45260]'>MY LORD</h1></h1>
+        <h1 className= {`text-${text} h-fit text-[40px] w-[60%] leading-[50px] sm:w-[90%] sm:text-center md:w-[80%] lg:leading-[100px] lg:text-[60px] lg:w-[690px]`}>ARENA AWAITS YOU, <h1 className='text-[#C45260]'>MY LORD</h1></h1>
         <div className="w-full h-[50vh] pt-9 lg:pt-3 flex flex-col items-center gap-14 relative lg:gap-8">
-          <p className='leading-[24px] text-[15px] text-[#ffffffae] font-extralight pr-4 sm:w-[75%] sm:text-center sm:pt-7 md:w-[60%] lg:w-[40%] '>
+          <p className={`leading-[24px] text-[15px] text-${ligthmode ? "[#05121B]" : "white"} font-extralight pr-4 sm:w-[75%] sm:text-center sm:pt-7 md:w-[60%] lg:w-[40%]`}>
             Most extreme place 
             you’ve experienced in your life, many characters, 
             amazing battlefield and your gameplay is what ittakes to be the best!
           </p>
-          <img className='w-[212px] h-[60px] lg:w-[261px] cursor-pointer' src={header_btn.src} alt="" />
+          <img className='w-[212px] h-[60px] lg:w-[261px] cursor-pointer' src={ligthmode ? res_btn.src : header_btn.src} alt="" />
           <div className="lg:flex hidden w-full justify-center gap-5 mt-5">
-            <div className="w-[50px] h-[50px] bg-[#E14E60] rounded-full flex justify-center items-center cursor-pointer">
-              <img src={redit_lofo.src} alt="" />
+            <div className={`w-[50px] h-[50px] ${ligthmode ? 'bg-white shadow-md shadow-black' : "bg-[#E14E60]"} rounded-full flex justify-center items-center cursor-pointer`}>
+              <img src={ligthmode ? b_reddit.src : redit_lofo.src} alt="" />
             </div>
-            <div className="w-[50px] h-[50px] bg-[#E14E60] rounded-full flex justify-center items-center cursor-pointer">
-              <img src={telegram_logo.src} alt="" />
+            <div className={`w-[50px] h-[50px] ${ligthmode ? 'bg-white shadow-md shadow-black' : "bg-[#E14E60]"} rounded-full flex justify-center items-center cursor-pointer`}>
+              <img src={ligthmode ? b_telegram.src : telegram_logo.src} alt="" />
             </div>
-            <div className="w-[50px] h-[50px] bg-[#E14E60] rounded-full flex justify-center items-center cursor-pointer">
-              <img src={twitter_logo.src} alt="" />
+            <div className={`w-[50px] h-[50px] ${ligthmode ? 'bg-white shadow-md shadow-black' : "bg-[#E14E60]"} rounded-full flex justify-center items-center cursor-pointer`}>
+              <img src={ligthmode ? b_twitter.src : twitter_logo.src} alt="" />
             </div>
-            <div className="w-[50px] h-[50px] bg-[#E14E60] rounded-full flex justify-center items-center cursor-pointer">
-              <img className='bg' src={mlogo_logo.src} alt="" />
+            <div className={`w-[50px] h-[50px] ${ligthmode ? 'bg-white shadow-md shadow-black' : "bg-[#E14E60]"} rounded-full flex justify-center items-center cursor-pointer`}>
+              <img className='bg' src={ligthmode ? b_m.src : mlogo_logo.src} alt="" />
             </div>
           </div>
           <div className='w-full h-fit flex justify-center items-center gap-4 mt-10'>
@@ -204,13 +219,17 @@ export default function Home() {
         </div>
       </div>
       
-      <div className='h-fit bg-[#04131B] mt-[-1px] flex justify-center items-center flex-col lg:pt-10 relative xl:px-60'>
+      <div className={`h-fit ${bg} mt-[-1px] flex justify-center items-center flex-col lg:pt-10 relative xl:px-60`}>
         <img className='absolute left-0 top-0 hidden lg:block' src={strokes.src} alt="" />
-        <img className='w-40 h-20 lg:w-56' src={abt_btn.src} alt="" />
+        <div id='cl_pt' className={`${ligthmode ? "p-[2px] bg-gradient-to-b from-black to-white" : "p-[2px] bg-gradient-to-b from-blue-600 to-[#04131B]"} h-36 w-56 rounded-tl-2xl`}>
+          <div id='cl_pt' className={`w-full h-full ${bg} flex items-center justify-center`}>
+            <h1 className={`text-${text} font-bold text-[36px]` }>About Us</h1>
+          </div>
+        </div>
         <div className='w-full h-fit flex flex-col text-center gap-12 mt-12 lg:w-[85%] lg:px-12'>
           <div className="w-full h-1/2 justify-center items-center flex flex-col px-4 lg:flex-row lg:justify-between">
-            <p className='leading-6 flex flex-col gap-8 text-white text-opacity-60 font-light text-[14px] w-[95%] lg:w-5/12 lg:text-left'>
-            <h2 className='mt-10 font-bold text-white text-[20px]'>Arena master</h2>
+            <p className={`leading-6 flex flex-col gap-8 text-${text} text-opacity-60 font-light text-[14px] w-[95%] lg:w-5/12 lg:text-left`}>
+            <h2 className={`mt-10 font-bold text-${text} text-[20px]`}>Arena master</h2>
               Arena Master is a tokenized online video game developed by Sambrela. 
               Sambrela boasts great expertise in blockchain technology and mobile game development. 
               Our sole aim is to provide a real-life gaming experience for 
@@ -219,7 +238,7 @@ export default function Home() {
               <img className='h-[200px] w-[230px] lg:translate-y-7 lg:h-60 lg:w-80 lg:translate-x-16' src={res_arena_inf.src} alt="" />
           </div>
           <div className="w-full h-1/2 justify-center items-center flex flex-col px-4 lg:flex-row-reverse lg:justify-between">
-            <p className='leading-6 text-white text-opacity-60 font-light text-[14px] w-[95%] lg:w-4/12 text-start'>
+            <p className={`leading-6 text-${text} text-opacity-60 font-light text-[14px] w-[95%] lg:w-4/12 text-start`}>
                 We are a team of amazing people with a sharp focus on building NFTs 
                 and skill-based games in the mobile space and exploring other types of gaming on 
                 different platforms to bring fun and entertainment to the blockchain industry.
@@ -229,32 +248,36 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className='h-fit bg-[#04131B] pt-9 w-full flex justify-center items-center pb-7 mt-[-1px]'>
+      <div className={`h-fit ${bg} pt-9 w-full flex justify-center items-center pb-7 mt-[-1px]`}>
       <div className="w-[92%] h-[526px] bg-gradient-to-br from-[#c4525fd6] to-[#04131B] rounded-[10px] relative p-[1.5px] mt-16 lg:h-[273px] lg:w-[80%] ">
-        <h1 className='absolute left-1/2 translate-x-[-50%] font-extrabold text-[16px] leading-6 text-white w-48 bg-[#04131B] top-[-10px] text-center'>AMT TOKEN UTILITY</h1>
-        <div className="w-full h-full bg-[#04131B] rounded-[10px] px-8 flex justify-center lg:pl-20 items-start flex-wrap lg:justify-around lg:items-center ">
+        <h1 className={`absolute left-1/2 translate-x-[-50%] font-extrabold text-[16px] leading-6 text-${text} w-48 ${bg} top-[-10px] text-center`}>AMT TOKEN UTILITY</h1>
+        <div className={`w-full h-full ${bg} rounded-[10px] px-8 flex justify-center lg:pl-20 items-start flex-wrap lg:justify-around lg:items-center`}>
             {token_list.map((token) => (
-                  <div className='flex items-center justify-start w-full lg:w-[30%] lg:justify-start h-16 pt-9 '>
+                  <div key={token.text} className='flex items-center justify-start w-full lg:w-[30%] lg:justify-start h-16 pt-9 '>
                     <img src={token.img.src} alt="" />
-                    <h2 className='text-white font-regular text-[14px] text-opacity-90'>{token.text}</h2>
+                    <h2 className={`text-${text} font-regular text-[14px] text-opacity-90`}>{token.text}</h2>
                   </div>
             ))}
         </div>
         </div>
       </div>
-      <div className='h-fit w-full bg-[#04131B]'>
+      <div className={`h-fit w-full ${bg}`}>
         <div className="mt-[-1px] w-full h-fit lg:gap-28 lg:py-32 flex flex-wrap justify-center items-center py-6 gap-10">
           <img src={whitepaper.src} alt="" />
           <img src={masterdeck.src} alt="" />
         </div>
         <div className="w-full h-fit py-2 justify-center flex flex-col items-center">
-          <h1 className='font-bold text-[20px] leading-5 text-white mt-9'>CHECK OUT OUR NEW VIDEO</h1>
+          <h1 className={`font-bold text-[20px] leading-5 text-${text} mt-9`}>CHECK OUT OUR NEW VIDEO</h1>
           <img className='mt-4' src={down_arrow.src} alt="" />
           {Number(width) > 650 ? <img id='characters_img' className='w-[80%] mt-7 lg:w-[840px] h-[400px]' src={res_video.src} alt="" /> : <img className='mt-0 w-[100%] h-[386px]' src={video_template.src} alt="" />}
         </div>
       </div>
-      <div className="mt-[-1px] w-full h-fit pb-28 flex flex-col items-center bg-[#04131B]">
-        <img className='w-56 h-20 lg:mt-32 md:mt-24' src={design_concept.src} alt="" />
+      <div className={`mt-[-1px] w-full h-fit pb-28 flex flex-col items-center ${bg}`}>
+      <div id='cl_pt' className={`mt-16 w-80 ${ligthmode ? "p-[2px] bg-gradient-to-b from-black to-white" : "p-[2px] bg-gradient-to-b from-blue-600 to-[#04131B]"} h-36 w-56 rounded-tl-2xl`}>
+          <div id='cl_pt' className={`w-full h-full ${bg} flex items-center justify-center`}>
+            <h1 className={`text-${text} font-bold text-[36px]` }>Design Concept</h1>
+          </div>
+        </div>
         <div className='mt-10 flex w-full items-center justify-center relative gap-3 lg:mt-16 flex-col'>
           <img className='absolute left-0 top-[-80px] md:w-12 md:hidden' src={pht_lefr.src} alt="" />
           <div className='flex w-full justify-center xl:gap-6 gap-3'>
@@ -284,9 +307,13 @@ export default function Home() {
         
       </div>
       <div className='w-full h-fit pb-10 flex items-center flex-col text-center'>
-            <img className='w-40 h-20' src={roadmap.src} alt="" />
+      <div id='cl_pt' className={`mt-8 w-40 ${ligthmode ? "p-[2px] bg-gradient-to-b from-black to-white" : "p-[2px] bg-gradient-to-b from-blue-600 to-[#04131B]"} h-32 w-56 rounded-tl-2xl`}>
+          <div id='cl_pt' className={`w-full h-full ${bg} flex items-center justify-center`}>
+            <h1 className={`text-${text} font-bold text-[36px]` }>Roadmap</h1>
+          </div>
+        </div>
             
-            <p className='mt-10 text-white font-extralight leading-6 text-opacity-80 text-[14px] w-[90%] lg:w-[60%]'>
+            <p className={`mt-10 text-${text} font-extralight leading-6 text-opacity-80 text-[14px] w-[90%] lg:w-[60%]`}>
             Arena Master is a tokenized online video game developed by Sambrela. 
             Sambrela boasts great expertise in blockchain technology and mobile game development. 
             Our sole aim is to provide a real-life gaming experience for people in the 
@@ -312,33 +339,34 @@ export default function Home() {
              
              
               <div className='flex flex-col justify-center items-center relative'>
-                <div className='flex w-full justify-center gap-60'>
-                  <div className='w-full flex flex-col items-center'>
-                  <h1 className='text-white text-[46px] font-extrabold leading-[42px]'>Q4</h1>
-                    <p className='font-bold text-white leading-5 mt-4'>2021 year</p>
-                    <div className='w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-40 sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative' style={{ boxShadow: 'inset 0 0 10px #17559B' }}>
-                        {RoadmapData[0].map((item) => (
-                          <div className='flex items-center gap-3 '>
-                            <img src={complete_mark.src} alt="" />
-                            <h2 className='text-[14px] text-white text-opacity-85'>{item}</h2>
-                          </div>
-                          
-                          ))}
+                
+                <div className='flex w-full justify-center gap-60 xl:px-56 xl:justify-between xl:items-center'>
+                <div className='w-fit flex flex-col items-center'>
+              <h1 className='text-white text-[46px] font-extrabold leading-[42px]'>Q3</h1>
+                <p className='font-bold text-white leading-5 mt-4'>2021 year</p>
+                <div className={`w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-${ligthmode ? '100' : "40"} sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative`} style={{ boxShadow: 'inset 0 0 10px #17559B'}}>
+                    {RoadmapData[0].map((item, i) => (
+                      <div key={i} className='flex items-center gap-3 '>
+                        <img src={uncomplete.src} alt="" />
+                        <h2 className='text-[14px] text-white text-opacity-85'>{item}</h2>
                       </div>
-                    </div>
-                 <img className='hidden xl:block' src={bear_res.src} alt="" />
+                      
+                      ))}
+                      </div>
+                 </div>
+                 <img className='xl:w-1/2  hidden xl:block' src={bear_res.src} alt="" />
                </div>
-               <img className='absolute top-[-50px] right-0 xl:hidden' src={bear.src} alt="" />
+               <img className='absolute top-[-10px] right-0 xl:hidden' src={bear.src} alt="" />
               </div>
-              <div className='flex flex-col justify-center items-center relative'>
-              <div className='flex w-full justify-center gap-60'>
-              <img className='hidden xl:block' src={fox_res.src} alt="" />
-              <div className='w-full flex flex-col items-center'>
+              <div className='flex flex-col justify-center items-center relative xl:justify-between'>
+              <div className='flex w-full justify-center xl:px-56 gap-60 xl:gap-0 xl:justify-between xl:items-center'>
+              <img className='xl:w-fit  hidden xl:block' src={fox_res.src} alt="" />
+              <div className='w-fit flex flex-col items-center'>
               <h1 className='text-white text-[46px] font-extrabold leading-[42px]'>Q1-Q2</h1>
                 <p className='font-bold text-white leading-5 mt-4'>2022 year</p>
-                <div className='w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-40 sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative' style={{ boxShadow: 'inset 0 0 10px #17559B' }}>
-                    {RoadmapData[1].map((item) => (
-                      <div className='flex items-center gap-3 '>
+                <div className={`w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-${ligthmode ? "95" : "40"} sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative `} style={{ boxShadow: 'inset 0 0 10px #17559B'}}>
+                    {RoadmapData[1].map((item, i) => (
+                      <div key={i} className='flex items-center gap-3 '>
                         <img src={uncomplete.src} alt="" />
                         <h2 className='text-[14px] text-white text-opacity-85'>{item}</h2>
                       </div>
@@ -352,13 +380,13 @@ export default function Home() {
               </div>
               <div className='flex flex-col justify-center items-center relative'>
                 
-                <div className='flex w-full justify-center gap-60'>
-                <div className='w-full flex flex-col items-center'>
+                <div className='flex w-full justify-center gap-60 xl:px-56 xl:justify-between xl:items-center'>
+                <div className='w-fit flex flex-col items-center'>
               <h1 className='text-white text-[46px] font-extrabold leading-[42px]'>Q3</h1>
                 <p className='font-bold text-white leading-5 mt-4'>2021 year</p>
-                <div className='w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-40 sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative' style={{ boxShadow: 'inset 0 0 10px #17559B' }}>
-                    {RoadmapData[2].map((item) => (
-                      <div className='flex items-center gap-3 '>
+                <div className={`w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-${ligthmode ? '100' : "40"} sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative`} style={{ boxShadow: 'inset 0 0 10px #17559B'}}>
+                    {RoadmapData[2].map((item, i) => (
+                      <div key={i} className='flex items-center gap-3 '>
                         <img src={uncomplete.src} alt="" />
                         <h2 className='text-[14px] text-white text-opacity-85'>{item}</h2>
                       </div>
@@ -366,19 +394,19 @@ export default function Home() {
                       ))}
                       </div>
                  </div>
-                 <img className='hidden xl:block' src={wolf_res.src} alt="" />
+                 <img className='xl:w-1/2  hidden xl:block' src={wolf_res.src} alt="" />
                </div>
                <img className='absolute top-[-10px] right-0 xl:hidden' src={wolf.src} alt="" />
               </div>
-              <div className='flex flex-col justify-center items-center relative'>
-              <div className='flex w-full justify-center gap-60'>
-              <img className='hidden xl:block' src={scorpio_res.src} alt="" />
-              <div className='w-full flex flex-col items-center'>
-              <h1 className='text-white text-[46px] font-extrabold leading-[42px]'>Q4</h1>
-                <p className='font-bold text-white leading-5 mt-4'>2021 year</p>
-                <div className='w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-40 sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative' style={{ boxShadow: 'inset 0 0 10px #17559B' }}>
-                    {RoadmapData[3].map((item) => (
-                      <div className='flex items-center gap-3 '>
+              <div className='flex flex-col justify-center items-center relative xl:justify-between'>
+              <div className='flex w-full justify-center xl:px-56 gap-60 xl:gap-0 xl:justify-between xl:items-center'>
+              <img className='xl:w-fit  hidden xl:block' src={scorpio_res.src} alt="" />
+              <div className='w-fit flex flex-col items-center'>
+              <h1 className='text-white text-[46px] font-extrabold leading-[42px]'>Q1-Q2</h1>
+                <p className='font-bold text-white leading-5 mt-4'>2022 year</p>
+                <div className={`w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-${ligthmode ? "95" : "40"} sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative `} style={{ boxShadow: 'inset 0 0 10px #17559B'}}>
+                    {RoadmapData[3].map((item, i) => (
+                      <div key={i} className='flex items-center gap-3 '>
                         <img src={uncomplete.src} alt="" />
                         <h2 className='text-[14px] text-white text-opacity-85'>{item}</h2>
                       </div>
@@ -388,18 +416,22 @@ export default function Home() {
                  </div>
                  
                </div>
-               <img className='absolute top-[-40px] left-0 xl:hidden' src={scorpio.src} alt="" />
+               <img className='absolute top-[-80px] left-0 xl:hidden' src={scorpio.src} alt="" />
               </div>
       </div>
       </div>
       <div className='w-full h-fit flex flex-col items-center pt-5 pb-36'>
-        <img className='w-44 h-20 mt-11 lg:w-64' src={tokenomics.src} alt="" />
+      <div id='cl_pt' className={`mt-8 w-40 ${ligthmode ? "p-[2px] bg-gradient-to-b from-black to-white" : "p-[2px] bg-gradient-to-b from-blue-600 to-[#04131B]"} h-36 w-64 rounded-tl-2xl`}>
+          <div id='cl_pt' className={`w-full h-full ${bg} flex items-center justify-center`}>
+            <h1 className={`text-${text} font-bold text-[36px]` }>Tokenomics</h1>
+          </div>
+        </div>
         <p className='w-[95%] text-[14px] text-center text-white text-opacity-75 mt-9 lg:w-[60%]'>
           Arena Master is a tokenized online video game developed by Sambrela. 
           Sambrela boasts great expertise in blockchain technology and mobile game development.
            Our sole aim is to provide a real-life gaming experience for people in the 
         </p>
-        <div className="w-full h-fit py-8 mt-14 flex flex-col items-center gap-14 bg-gradient-to-b from-[#042B3E] to-[#04131B] rounded-3xl lg:w-[85%] lg:flex-row lg: justify-around">
+        <div className={`w-full h-fit py-8 mt-14 flex flex-col items-center gap-14 bg-gradient-to-b  ${ligthmode ? bg : 'bg-gradient-to-b from-[#042B3E] to-[#04131B] '} rounded-3xl lg:w-[85%] lg:flex-row lg: justify-around`}>
         {Number(width) > 1440 ?  
         <>
         <img src={list_res.src} alt="" />
@@ -413,15 +445,19 @@ export default function Home() {
         </div>
       </div>
       <div className='h-fit flex items-center flex-col pb-16 overflow-hidden'>
-        <img className='w-44 h-20 mt-2 lg:w-64' src={team.src} alt="" />
+      <div id='cl_pt' className={`mt-8 ${ligthmode ? "p-[2px] bg-gradient-to-b from-black to-white" : "p-[2px] bg-gradient-to-b from-blue-600 to-[#04131B]"} h-36 w-52 rounded-tl-2xl`}>
+          <div id='cl_pt' className={`w-full h-full ${bg} flex items-center justify-center`}>
+            <h1 className={`text-${text} font-bold text-[36px]` }>Our team</h1>
+          </div>
+        </div>
         <div className="w-fit gap-6 flex mt-36 justify- lg:w-full lg:flex-wrap lg:px-6 lg:gap-16 lg:justify-center xl:justify-center xl:px-4">
           {pfpData.map((pfp) => (
-                <div className={`w-52 h-[231px]  bg-gradient-to-b from-[#c4525fd6] to-[#04131B] rounded-md p-[2px] ${pfp == pfp_7 ? "opacity-100" : "opacity-30 md:opacity-100"} lg:mt-6 xl:w-[302px] `}>
-                    <div className="h-full w-full bg-[#04131B] rounded-md relative flex flex-col text-center items-center justify-center">
+                <div key={pfp.src} className={`w-52 h-[231px]  ${ligthmode ? `bg-gradient-to-b from-[#c4525fd6] white` : 'bg-gradient-to-b from-[#c4525fd6] to-[#04131B]'} rounded-md p-[2px] ${pfp == pfp_7 ? "opacity-100" : "opacity-30 md:opacity-100"} lg:mt-6 xl:w-[302px] `}>
+                    <div className={`h-full w-full ${bg} rounded-md relative flex flex-col text-center items-center justify-center`}>
                         <img className='absolute top-[-50%] translate-y-[20%] left-1/2 translate-x-[-50%]' src={pfp.src} alt="" />
-                        <h2 className='text-white font-bold leading-6 mt-3'>Giorgi Rurua</h2>
-                        <p className='text-[12px] text-[#BDBDBD]  font-semibold translate-y-2'>Product designer</p>
-                        <img className='absolute bottom-3' src={linkdn.src} alt="" />
+                        <h2 className={`text-${text} font-bold leading-6 mt-3`}>Giorgi Rurua</h2>
+                        <p className={`text-[12px] ${ligthmode ? "text-[#05121B]" : "text-[#BDBDBD]"}  font-semibold translate-y-7`}>Product designer</p>
+                        <img className='absolute bottom-3' src={ligthmode ? dark_lnkd.src : linkdn.src} alt="" />
                     </div>
                 </div>
           ))}
@@ -429,7 +465,11 @@ export default function Home() {
         </div>
       </div>
       <div id='partners' className="w-full h-fit flex flex-col items-center pb-32">
-      <img className='w-48 mt-20 lg:w-52' src={partners.src} alt="" />
+      <div id='cl_pt' className={`mt-36 ${ligthmode ? "p-[2px] bg-gradient-to-b from-black to-white" : "p-[2px] bg-gradient-to-b from-blue-600 to-[#04131B]"} h-36 w-64 rounded-tl-2xl`}>
+          <div id='cl_pt' className={`w-full h-full ${bg} flex items-center justify-center`}>
+            <h1 className={`text-${text} font-bold text-[36px]` }>Our Partners</h1>
+          </div>
+        </div>
       {Number(width) > 980 ?  
         <div className='flex w-full h-fit py-10 px-20 gap-14 mt-24'>
           <div className="h-80 w-1/5 flex flex-col items-center justify-around">
@@ -477,17 +517,21 @@ export default function Home() {
       }
       </div>
       <div className="w-full h-fit flex flex-col items-center pb-16 overflow-hidden">
-        <img className='w-36 lg:w-52 h-20' src={advisors.src} alt="" />
+      <div id='cl_pt' className={`mt-6 ${ligthmode ? "p-[2px] bg-gradient-to-b from-black to-white" : "p-[2px] bg-gradient-to-b from-blue-600 to-[#04131B]"} h-32 w-52 rounded-tl-2xl`}>
+          <div id='cl_pt' className={`w-full h-full ${bg} flex items-center justify-center`}>
+            <h1 className={`text-${text} font-bold text-[36px]` }>Advisors</h1>
+          </div>
+        </div>
         <div className="w-fit gap-6 flex mt-36 justify- lg:w-full lg:flex-wrap lg:px-6 lg:gap-16 lg:justify-center xl:justify-center xl:px-4">
           {advisorsData.map((pfp) => (
-                <div className={`w-52 h-[231px]  bg-gradient-to-b from-[#c4525fd6] to-[#04131B] rounded-md p-[2px] lg:mt-6 xl:w-[302px] `}>
-                    <div className="h-full w-full bg-[#04131B] rounded-md relative flex flex-col text-center items-center justify-center">
-                        <img className='absolute top-[-50%] translate-y-[20%] left-1/2 translate-x-[-50%]' src={pfp.src} alt="" />
-                        <h2 className='text-white font-bold leading-6 mt-3'>Giorgi Rurua</h2>
-                        <p className='text-[12px] text-[#BDBDBD]  font-semibold translate-y-2'>Product designer</p>
-                        <img className='absolute bottom-3' src={linkdn.src} alt="" />
-                    </div>
+                <div key={pfp.src} className={`w-52 h-[231px]  ${ligthmode ? `bg-gradient-to-b from-[#c4525fd6] white` : 'bg-gradient-to-b from-[#c4525fd6] to-[#04131B]'} rounded-md p-[2px] ${pfp == pfp_7 ? "opacity-100" : "opacity-30 md:opacity-100"} lg:mt-6 xl:w-[302px] `}>
+                <div className={`h-full w-full ${bg} rounded-md relative flex flex-col text-center items-center justify-center`}>
+                    <img className='absolute top-[-50%] translate-y-[20%] left-1/2 translate-x-[-50%]' src={pfp.src} alt="" />
+                    <h2 className={`text-${text} font-bold leading-6 mt-3`}>Giorgi Rurua</h2>
+                    <p className={`text-[12px] ${ligthmode ? "text-[#05121B]" : "text-[#BDBDBD]"}  font-semibold translate-y-7`}>Product designer</p>
+                    <img className='absolute bottom-3' src={ligthmode ? dark_lnkd.src : linkdn.src} alt="" />
                 </div>
+            </div>
           ))}
 
         </div>
@@ -521,29 +565,33 @@ export default function Home() {
       <div className="w-full h-fit flex flex-col mt-28 lg:flex-row py-12 relative items-center lg:items-center lg:justify-between lg:px-2 xl:px-24 xl:gap-6">
         <h2 className='text-white font-bold md:hidden'>join our community</h2>
         <div className="flex w-full justify-center gap-5 mt-5 lg:w-fit lg:mt-14">
-            <div className="w-[50px] h-[50px] bg-white rounded-full flex justify-center items-center cursor-pointer">
+            <div className="w-[50px] h-[50px] bg-white rounded-full flex justify-center items-center cursor-pointer shadow-md shadow-black">
               <img className='text-black' src={foot_reddit.src} alt="" />
             </div>
-            <div className="w-[50px] h-[50px] bg-white rounded-full flex justify-center items-center cursor-pointer">
+            <div className="w-[50px] h-[50px] bg-white rounded-full flex justify-center items-center cursor-pointer shadow-md shadow-black">
               <img className='text-black' src={foot_telegram.src} alt="" />
             </div>
-            <div className="w-[50px] h-[50px] bg-white rounded-full flex justify-center items-center cursor-pointer">
+            <div className="w-[50px] h-[50px] bg-white rounded-full flex justify-center items-center cursor-pointer shadow-md shadow-black">
               <img className='text-black' src={foot_twitter.src} alt="" />
             </div>
-            <div className="w-[50px] h-[50px] bg-white rounded-full flex justify-center items-center cursor-pointer">
+            <div className="w-[50px] h-[50px] bg-white rounded-full flex justify-center items-center cursor-pointer shadow-md shadow-black">
               <img className='' src={foot_m.src} alt="" />
             </div>
           </div>
           
-          {Number(width) > 980 ?  <h2 className='text-white text-[14px] font-black mt-14 ml-[5%]'>© 2022 Arena. All rights reserved.</h2> : <></>}
+          {Number(width) > 980 ?  <h2 className={`text-${text} text-[14px] font-black mt-14 ml-[5%]`}>© 2022 Arena. All rights reserved.</h2> : <></>}
           <div className="w-full lg:w-fit flex flex-col gap-6 items-center mt-14 lg:mt-0 lg:gap-3 lg:items-start">
               <h2 className='text-white text-[18px]'>Subscire to our Newsletter</h2>
               <div className='w-[90%] rounded-lg h-14 bg-white flex md:w-[438px] md:justify-center'>
-                <input className='w-[70%] h-full text-black pl-3 rounded-lg outline-none' placeholder='Enter Your Email' type="text" />
+              <input 
+                className={`w-[70%] h-full text-black pl-3 rounded-lg outline-none ${ligthmode ? 'border-l-black' : 'border-black'}`}
+                placeholder='Enter Your Email' 
+                type="text" 
+              />
                 <button className='w-[30%] h-full bg-[#C45260] text-white text-[14px] rounded-lg'>Subscribe</button>
               </div>
           </div>
-          {Number(width) < 980 ?  <h2 className='text-white text-[14px] font-black mt-14'>© 2022 Arena. All rights reserved.</h2> : <></>}
+          {Number(width) < 980 ?  <h2 className={`text-${text} mt-14 font-black text-[14px]`}>© 2022 Arena. All rights reserved.</h2> : <></>}
 
       </div>
     </main>

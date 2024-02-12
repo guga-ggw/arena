@@ -141,15 +141,51 @@ export default function Home() {
     ['Public Sale', 'Obtain Coingecko Listing', 'Obtain Coinmarketcap Listing', 'Centralized exchange Listing', 'Game Launch On GameXChange', 'Game Currency Integration'],
     ['NFT Marketplace and NFT Rewards', 'NFT Pair Staking/Forming', 'NFT Asset Games Integration', 'Single Asset Staking', 'Additional NFT Assets', 'Additional Characters'],
     ['Game rewards for game asset & NFT', 'New NFT Collectibles','Collaboration With Influencers','User-Generated Events','New Partnerships','VR gallery','Arena Mastser VR (Quest 2)']
-    
+  ]
+  const carousel = [
+    {
+      img : res_pht,
+      title : ""
+    },
+    {
+      img : des_ls_img,
+      title : "Explore new lands"
+    },
+    {
+      img : des_m_img,
+      title : "ExBattle on Diverse Arenas"
+    },
+    {
+      img : des_r_img,
+      title : "Collect NFT characters"
+    }
   ]
 
   const [navtoggle, settoggle] = useState(false)
   const [ligthmode, setlightmode] = useState(false)
+  const [carouselNum, setCarouselNum] = useState(0)
   let text = ligthmode ? "[#05121B]" : "white"
   let bg = ligthmode ? "bg-white" : "bg-[#04131B]"
 
   const {height, width} = useWindowResize()
+
+  const encrease = () => {
+    if(carouselNum < 3) {
+      console.log('helo')
+      setCarouselNum(prev => prev + 1)
+    }
+    else{
+      setCarouselNum(0)
+    }
+  }
+  const decrease = () => {
+    if(carouselNum !== 0) {
+      setCarouselNum(prev => prev - 1)
+    }
+    else{
+      setCarouselNum(3)
+    }
+  }
 
   return (
     <main className={`w-full h-fit ${bg}`}> 
@@ -281,23 +317,25 @@ export default function Home() {
         <div className='mt-10 flex w-full items-center justify-center relative gap-3 lg:mt-16 flex-col'>
           <img className='absolute left-0 top-[-80px] md:w-12 md:hidden' src={pht_lefr.src} alt="" />
           <div className='flex w-full justify-center xl:gap-6 gap-3'>
-            <img className='h-80 cursor-pointer lg:h-96 hidden md:block xl:h-auto  ' src={left_arr.src} alt="" />
-            {Number(width) > 980 ?  <img className='w-[800px] h-96 xl:w-auto xl:h-auto' src={res_pht.src} alt="" />: <img className='h-48 w-80 sm:h-60 sm:w-96  md:w-[510px] md:h-80' src={pht_tem.src} alt="" />}
-            <img className='h-80 cursor-pointer lg:h-96 hidden md:block xl:h-auto' src={right_arr.src} alt="" />
+            <img className='h-80 cursor-pointer lg:h-96 hidden md:block xl:h-auto ' src={left_arr.src} alt=""  onClick={() => decrease()}/>
+            {Number(width) > 980 ?  
+            <img className='w-[900px] h-96 xl:w-[1050px] xl:h-[500px]' src={carousel[carouselNum].img.src} alt="" />
+            : <img className='h-48 w-80 sm:h-60 sm:w-96  md:w-[510px] md:h-80' src={pht_tem.src} alt=""/>}
+            <img className='h-80 cursor-pointer lg:h-96 hidden md:block xl:h-auto' src={right_arr.src} alt="" onClick={() => encrease()}/>
           </div>
           {Number(width) > 1440 ?  
           <div className='w-[1060px] h-[263px]  flex items-start justify-between  relative'>
             <div className='relative'>
-            <img className='h-full cursor-pointer' src={des_ls_img.src} alt="Explore New Lands" />
+            <img className={`h-full cursor-pointer ${carouselNum == 1 ? "blur-sm" : "blur-none"}`} src={des_ls_img.src} alt="Explore New Lands" />
             <h1 className='leading-8 text-[24px] font-black w-2/3 text-white absolute top-3 left-3'>EXPLORE NEW LANDS</h1>
             </div>
             <div className='relative'>
-            <img className='h-full cursor-pointer ' src={des_m_img.src} alt="" />
+            <img className={`h-full cursor-pointer ${carouselNum == 2 ? "blur-sm" : "blur-none"}`} src={des_m_img.src} alt="" />
             <h1 className='leading-8 text-[24px] font-black w-2/3 text-white absolute top-3 left-3'>ExBattle on Diverse Arenas</h1>
             </div>
             <div className='relative'>
 
-            <img className='h-full cursor-pointer ' src={des_r_img.src} alt="" />
+            <img className={`h-full cursor-pointer ${carouselNum == 3 ? "blur-sm" : "blur-none"}`} src={des_r_img.src} alt="" />
             <h1 className='leading-8 text-[24px] font-black w-2/3 text-white absolute top-3 left-3'>Collect NFT Characters</h1>
             </div>
           </div>
@@ -341,9 +379,9 @@ export default function Home() {
               <div className='flex flex-col justify-center items-center relative'>
                 
                 <div className='flex w-full justify-center gap-60 xl:px-56 xl:justify-between xl:items-center'>
-                <div className='w-fit flex flex-col items-center'>
-              <h1 className='text-white text-[46px] font-extrabold leading-[42px]'>Q3</h1>
-                <p className='font-bold text-white leading-5 mt-4'>2021 year</p>
+                <div className='w-full flex flex-col items-center'>
+              <h1 className={`text-${text} text-[46px] font-extrabold leading-[42px]`}>Q3</h1>
+                <p className={`font-bold text-${text} leading-5 mt-4`}>2021 year</p>
                 <div className={`w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-${ligthmode ? '100' : "40"} sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative`} style={{ boxShadow: 'inset 0 0 10px #17559B'}}>
                     {RoadmapData[0].map((item, i) => (
                       <div key={i} className='flex items-center gap-3 '>
@@ -354,16 +392,16 @@ export default function Home() {
                       ))}
                       </div>
                  </div>
-                 <img className='xl:w-1/2  hidden xl:block' src={bear_res.src} alt="" />
+                 <img className='xl:w-1/3  hidden xl:block' src={bear_res.src} alt="" />
                </div>
                <img className='absolute top-[-10px] right-0 xl:hidden' src={bear.src} alt="" />
               </div>
-              <div className='flex flex-col justify-center items-center relative xl:justify-between'>
+              <div className='flex flex-col w-full justify-center items-center relative xl:justify-between'>
               <div className='flex w-full justify-center xl:px-56 gap-60 xl:gap-0 xl:justify-between xl:items-center'>
-              <img className='xl:w-fit  hidden xl:block' src={fox_res.src} alt="" />
-              <div className='w-fit flex flex-col items-center'>
-              <h1 className='text-white text-[46px] font-extrabold leading-[42px]'>Q1-Q2</h1>
-                <p className='font-bold text-white leading-5 mt-4'>2022 year</p>
+              <img className='xl:w-1/4  hidden xl:block' src={fox_res.src} alt="" />
+              <div className='w-full lg:w-fit flex flex-col items-center'>
+              <h1 className={`text-${text} text-[46px] font-extrabold leading-[42px]`}>Q1-Q2</h1>
+                <p className={`font-bold text-${text} leading-5 mt-4`}>2022 year</p>
                 <div className={`w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-${ligthmode ? "95" : "40"} sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative `} style={{ boxShadow: 'inset 0 0 10px #17559B'}}>
                     {RoadmapData[1].map((item, i) => (
                       <div key={i} className='flex items-center gap-3 '>
@@ -381,9 +419,9 @@ export default function Home() {
               <div className='flex flex-col justify-center items-center relative'>
                 
                 <div className='flex w-full justify-center gap-60 xl:px-56 xl:justify-between xl:items-center'>
-                <div className='w-fit flex flex-col items-center'>
-              <h1 className='text-white text-[46px] font-extrabold leading-[42px]'>Q3</h1>
-                <p className='font-bold text-white leading-5 mt-4'>2021 year</p>
+                <div className='w-full lg:w-fit flex flex-col items-center'>
+              <h1 className={`text-${text} text-[46px] font-extrabold leading-[42px]`}>Q3</h1>
+                <p className={`font-bold text-${text} leading-5 mt-4`}>2022 year</p>
                 <div className={`w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-${ligthmode ? '100' : "40"} sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative`} style={{ boxShadow: 'inset 0 0 10px #17559B'}}>
                     {RoadmapData[2].map((item, i) => (
                       <div key={i} className='flex items-center gap-3 '>
@@ -394,16 +432,16 @@ export default function Home() {
                       ))}
                       </div>
                  </div>
-                 <img className='xl:w-1/2  hidden xl:block' src={wolf_res.src} alt="" />
+                 <img className='xl:w-1/3  hidden xl:block' src={wolf_res.src} alt="" />
                </div>
                <img className='absolute top-[-10px] right-0 xl:hidden' src={wolf.src} alt="" />
               </div>
               <div className='flex flex-col justify-center items-center relative xl:justify-between'>
               <div className='flex w-full justify-center xl:px-56 gap-60 xl:gap-0 xl:justify-between xl:items-center'>
-              <img className='xl:w-fit  hidden xl:block' src={scorpio_res.src} alt="" />
-              <div className='w-fit flex flex-col items-center'>
-              <h1 className='text-white text-[46px] font-extrabold leading-[42px]'>Q1-Q2</h1>
-                <p className='font-bold text-white leading-5 mt-4'>2022 year</p>
+              <img className='xl:w-1/3  hidden xl:block' src={scorpio_res.src} alt="" />
+              <div className='w-full lg:w-fit flex flex-col items-center'>
+              <h1 className={`text-${text} text-[46px] font-extrabold leading-[42px]`}>Q4</h1>
+                <p className={`font-bold text-${text} leading-5 mt-4`}>2022 year</p>
                 <div className={`w-[90%] h-[374px] bg-[#091828] mt-8 rounded-[10px] shadow-2xl bg-opacity-${ligthmode ? "95" : "40"} sm:w-[400px] justify-center flex flex-col gap-3 px-6 relative `} style={{ boxShadow: 'inset 0 0 10px #17559B'}}>
                     {RoadmapData[3].map((item, i) => (
                       <div key={i} className='flex items-center gap-3 '>
@@ -434,12 +472,156 @@ export default function Home() {
         <div className={`w-full h-fit py-8 mt-14 flex flex-col items-center gap-14 bg-gradient-to-b  ${ligthmode ? bg : 'bg-gradient-to-b from-[#042B3E] to-[#04131B] '} rounded-3xl lg:w-[85%] lg:flex-row lg: justify-around`}>
         {Number(width) > 1440 ?  
         <>
-        <img src={list_res.src} alt="" />
-        <img src={circle_res.src} alt="" />
+        <div className='w-[600px] h-[700px] rounded-xl bg-[#021C2B]'>
+          <div className='w-full h-[10%] border-b-2 border-blue-900 flex justify-around items-center'>
+            <h2 className='text-white text-[20px]'>Pool</h2>
+            <h2 className='text-white text-[20px]'>AMT Price</h2>
+            <h2 className='text-white text-[20px]'>Raised</h2>
+            <h2 className='text-white text-[20px]'>%</h2>
+            <h2 className='text-white text-[20px]'>Tokens</h2>
+          </div>
+          <div className='h-[80%] flex flex-col w-full'>
+              <div className="w-full h-20 border-b-2 border-blue-800 flex text-white justify-around items-center">
+                <h3>Speed</h3>
+                <h4>$0.0654</h4>
+                <h4>$420</h4>
+                <h4>10%</h4>
+                <h4>1 500 000</h4>
+              </div>
+              <div className="w-full h-20 border-b-2 border-blue-800 flex text-white justify-around items-center">
+                <h3>Private</h3>
+                <h4>$0.0654</h4>
+                <h4>$8763</h4>
+                <h4>5%</h4>
+                <h4>1 700 807</h4>
+              </div>
+              <div className="w-full h-20 border-b-2 border-blue-800 flex text-white justify-around items-center">
+                <h3>IDO</h3>
+                <h4>$0.1654</h4>
+                <h4>$3525</h4>
+                <h4>20%</h4>
+                <h4>900 000</h4>
+              </div>
+              <div className="w-full h-20 border-b-2 border-blue-800 flex text-white justify-around items-center">
+                <h3>Marketing</h3>
+                <h4>$0.02654</h4>
+                <h4>$543</h4>
+                <h4>7%</h4>
+                <h4>52 543 849</h4>
+              </div>
+              <div className="w-full h-20 border-b-2 border-blue-800 flex text-white justify-around items-center">
+                <h3>Reserve</h3>
+                <h4>$0.3654</h4>
+                <h4>$1400</h4>
+                <h4>3%</h4>
+                <h4>4 350 000</h4>
+              </div>
+              <div className="w-full h-20 border-b-2 border-blue-800 flex text-white justify-around items-center">
+                <h3>Liquid</h3>
+                <h4>$0.0004</h4> 
+                <h4>$87653</h4>
+                <h4>15%</h4>
+                <h4>100 000</h4>
+              </div>
+              <div className="w-full h-20 border-b-2 border-blue-800 flex text-white justify-around items-center">
+                <h3>Team</h3>
+                <h4>$0.024</h4>
+                <h4>$4325</h4>
+                <h4>40%</h4>
+                <h4>12 500 000</h4>
+              </div>
+          </div>
+          <div className='w-full h-[10%] bg-[#014870] flex text-white justify-around items-center'>
+            <h1 className='font-black text-[25px]'>Total</h1>
+            <h5>0.71254 </h5>
+            <h5>$106,629</h5>
+            <h5>100%</h5>
+            <h5>73,594,656</h5>
+          </div>
+        </div>
+        <div id='circle' className='w-[450px] h-[450px] bg-red-700 rounded-full'>
+          <div className='w-[60%] h-[60%] rounded-full bg-black bg-opacity-35 flex justify-center items-center'>
+            <div className='w-[80%] h-[80%] rounded-full bg-[#C6365E] flex items-center justify-center'>
+              <h1 className='text-white text-[40px]'>Team</h1>
+            </div>
+          </div>
+        </div>
         </> :
          <>
-         <img src={list.src} alt="" />
-          <img className='w-full sm:w-[400px]' src={circle.src} alt="" />
+         <div className='w-[350px] md:w-[500px] h-[500px] rounded-xl bg-[#021C2B] text-[10px]'>
+          <div className='w-full h-[10%] border-b-2 border-blue-900 flex justify-around items-center'>
+            <h2 className='text-white text-[15px] md:text-[20px]'>Pool</h2>
+            <h2 className='text-white text-[15px] md:text-[20px]'>AMT Price</h2>
+            <h2 className='text-white text-[15px] md:text-[20px]'>Raised</h2>
+            <h2 className='text-white text-[15px] md:text-[20px]'>%</h2>
+            <h2 className='text-white text-[15px] md:text-[20px]'>Tokens</h2>
+          </div>
+          <div className='h-[80%] flex flex-col w-full'>
+              <div className="w-full h-20 border-b-2 border-blue-800 flex text-white justify-around items-center">
+                <h3>Speed</h3>
+                <h4>$0.0654</h4>
+                <h4>$420</h4>
+                <h4>10%</h4>
+                <h4>1 500 000</h4>
+              </div>
+              <div className="w-full h-20 border-b-2 border-blue-800 flex text-white justify-around items-center">
+                <h3>Private</h3>
+                <h4>$0.0654</h4>
+                <h4>$8763</h4>
+                <h4>5%</h4>
+                <h4>1 700 807</h4>
+              </div>
+              <div className="w-full h-20 border-b-2 border-blue-800 flex text-white justify-around items-center">
+                <h3>IDO</h3>
+                <h4>$0.1654</h4>
+                <h4>$3525</h4>
+                <h4>20%</h4>
+                <h4>900 000</h4>
+              </div>
+              <div className="w-full h-20 border-b-2 border-blue-800 flex text-white justify-around items-center">
+                <h3>Marketing</h3>
+                <h4>$0.02654</h4>
+                <h4>$543</h4>
+                <h4>7%</h4>
+                <h4>52 543 849</h4>
+              </div>
+              <div className="w-full h-20 border-b-2 border-blue-800 flex text-white justify-around items-center">
+                <h3>Reserve</h3>
+                <h4>$0.3654</h4>
+                <h4>$1400</h4>
+                <h4>3%</h4>
+                <h4>4 350 000</h4>
+              </div>
+              <div className="w-full h-20 border-b-2 border-blue-800 flex text-white justify-around items-center">
+                <h3>Liquid</h3>
+                <h4>$0.0004</h4> 
+                <h4>$87653</h4>
+                <h4>15%</h4>
+                <h4>100 000</h4>
+              </div>
+              <div className="w-full h-20 border-b-2 border-blue-800 flex text-white justify-around items-center">
+                <h3>Team</h3>
+                <h4>$0.024</h4>
+                <h4>$4325</h4>
+                <h4>40%</h4>
+                <h4>12 500 000</h4>
+              </div>
+          </div>
+          <div className='w-full h-[10%] bg-[#014870] flex text-white justify-around items-center'>
+            <h1 className='font-black text-[20px]'>Total</h1>
+            <h5>0.71254 </h5>
+            <h5>$106,629</h5>
+            <h5>100%</h5>
+            <h5>73,594,656</h5>
+          </div>
+        </div>
+        <div id='circle' className='w-[350px] h-[350px] bg-red-700 rounded-full'>
+          <div className='w-[60%] h-[60%] rounded-full bg-black bg-opacity-35 flex justify-center items-center'>
+            <div className='w-[80%] h-[80%] rounded-full bg-[#C6365E] flex items-center justify-center'>
+              <h1 className='text-white text-[40px]'>Team</h1>
+            </div>
+          </div>
+        </div>
         </> }
           
         </div>

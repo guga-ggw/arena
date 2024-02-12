@@ -36,3 +36,19 @@ body::-webkit-scrollbar{
 #cl_pt{
     clip-path: polygon(50% 12%, 50% 12%, 100% 30%, 100% 67%, 52% 80%, 52% 80%, 0 68%, 0 29%);
 }
+
+#circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: conic-gradient(
+        from 0deg,
+        #FF5733 0% 10%, /* Vermilion */
+        #FFC300 10% 15%, /* Goldenrod */
+        #FF85A2 15% 35%, /* Salmon Pink */
+        #9A79FE 35% 42%, /* Dark Lilac */
+        #FF5733 42% 45%, /* Vermilion */
+        #DAF7A6 45% 60%, /* Magic Mint */
+        #9A6324 60% 100% /* Deep Chestnut */
+    );
+}
